@@ -1,0 +1,98 @@
+---
+title: "Show Lexis Surface Scotland"
+author: "Jon Minton"
+format: html
+editor: visual
+---
+
+## 
+
+```{r, ignore = TRUE}
+
+install.packages("HMDHFDplus")
+install.packages("tidyverse")
+```
+
+```{r}
+library(HMDHFDplus)
+library(tidyverse)
+```
+
+Check Mx_1x1 available for GB
+
+```{r}
+HMDHFDplus::getHMDitemavail("GBR_NP")
+
+
+```
+
+Download item
+
+```{r, cached = TRUE}
+
+MxGb <- HMDHFDplus::readHMDweb(CNTRY = "GBR_NP", item = "Mx_1x1", username = "jon.will.minton@gmail.com", password = "newPassphrase_2023")
+```
+
+Move to tidy format
+
+```{r}
+
+MxGb %>% 
+  as_tibble() %>% 
+  janitor::clean_names() %>% 
+  select(-open_interval) %>% 
+  pivot_longer(cols = c("female", "male", "total"), values_to = "Mx", names_to = "sex") %>% 
+  filter(sex != "total") %>% 
+  filter(age <= 90) %>% 
+  ggplot(aes(x = year, y= age, fill = log(Mx))) +
+  facet_wrap(~sex) + 
+  geom_tile() +
+  scale_fill_viridis_c(direction = -1) + 
+  labs(
+    x = "Calendar Year",
+    y = "Age in years",
+    title = "Log mortality rate by sex, Great Britain"
+  )
+
+
+```
+
+```{r}
+MxGb %>% 
+  as_tibble() %>% 
+  janitor::clean_names() %>% 
+  select(-open_interval) %>% 
+  pivot_longer(cols = c("female", "male", "total"), values_to = "Mx", names_to = "sex") %>% 
+  filter(sex != "total") %>% 
+  filter(age <= 90) %>% 
+  ggplot(aes(x = year, y= age, z = log(Mx))) +
+  facet_wrap(~sex) + 
+  geom_contour() +
+  scale_fill_viridis_c(direction = -1) + 
+  labs(
+    x = "Calendar Year",
+    y = "Age in years",
+    title = "Log mortality rate by sex, Great Britain"
+  )
+```
+
+```{r}
+MxGb %>% 
+  as_tibble() %>% 
+  janitor::clean_names() %>% 
+  select(-open_interval) %>% 
+  pivot_longer(cols = c("female", "male", "total"), values_to = "Mx", names_to = "sex") %>% 
+  filter(sex != "total") %>% 
+  filter(age <= 90) %>% 
+  ggplot(aes(x = year, y= age)) +
+  facet_wrap(~sex) + 
+  geom_tile(aes(fill = log(Mx))) + 
+  geom_contour(aes(z = log(Mx)), colour = "darkgreen") +
+
+  scale_fill_viridis_c(direction = -1) + 
+  labs(
+    x = "Calendar Year",
+    y = "Age in years",
+    title = "Log mortality rate by sex, Great Britain"
+  )
+```

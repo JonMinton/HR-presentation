@@ -1,0 +1,9 @@
+"0","library(HMDHFDplus)"
+"2","Warning message:
+"
+"2","In for (pkg in package) { :"
+"2","
+ "
+"2"," closing unused connection 3 (https://www.mortality.org/Country/Country?cntr=GBR_NP)
+"
+"0","library(tidyverse)"

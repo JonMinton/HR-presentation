@@ -1,0 +1,32 @@
+{
+    "id": "3851BD22",
+    "path": "~/repos/HR-presentation/qmd/generateLexisSurface.qmd",
+    "project_path": "qmd/generateLexisSurface.qmd",
+    "type": "quarto_markdown",
+    "hash": "524378380",
+    "contents": "",
+    "dirty": false,
+    "created": 1685457717943.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "48,0",
+        "scrollLine": "0",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "95:0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1685460048,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1685460048163,
+    "read_only": false,
+    "read_only_alternatives": []
+}
